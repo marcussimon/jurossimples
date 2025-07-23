@@ -2,6 +2,14 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    style-src 'self' https://cdnjs.cloudflare.com;
+    font-src 'self' https://cdnjs.cloudflare.com;
+    script-src 'self' https://code.jquery.com;
+  ">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Cache-Control" content="no-store" />
   <title>Banda Juros Simples</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -10,12 +18,17 @@
 </head>
 <body class="body_css imagem">
   <main>
-    <div class="imagem-banner navbar">
-   <a href="index.html">Início</a>
-   <a href="musicas.html">Músicas</a>
-   <a href="contato.html">A Banda</a>
+    <div class="imagem-banner navbar ">
+       <div class="navbar-esquerda">
+        <a href="index.html">Início</a>
+        <a href="musicas.html">Músicas</a>
+        <a href="contato.html">A Banda</a>
+      </div>
+      <div class="navbar-direita">
+        <a href="login.html">Acesso Restrito</a>
+      </div>
     </div>
-    <div class="section_abanda imagem-banner js">
+    <div class="section_abanda imagem-banner">
       <div class="texto_abanda">
         <h1>Banda Juros Simples</h1>
         <p>Uma história que começou com amigos reunidos para aprender a tocar violão, a 
@@ -30,7 +43,7 @@
     </div>
   </main>
   <main class="main2">
-    <div class="section_abanda2 imagem-banner js">    
+    <div class="section_abanda2 imagem-banner">    
       <div class="texto_abanda">
         <h1>Do hobby à paixão</h1>
         <p>A ideia de formar uma banda surgiu de forma despretensiosa, durante 
@@ -46,7 +59,7 @@
     </div>
   </main>
   <main class="main2">
-    <div class="section_abanda imagem-banner js">    
+    <div class="section_abanda imagem-banner">    
       <div class="texto_abanda">
         <h1>Um show de energia e emoção</h1>
         <p>Com uma formação que inclui Raphael Lacerda (vocais), Marcus Simon (guitarra),
@@ -61,7 +74,7 @@
     </div>
   </main>
    <main class="main2">
-    <div class="section_abanda2 imagem-banner js">    
+    <div class="section_abanda2 imagem-banner">    
       <div class="texto_abanda">
         <h1>Presença marcante em festivais</h1>
         <p>A banda já se apresentou em diversos eventos, como o Festival Gastronômico Deliciosas 
@@ -83,7 +96,7 @@
     </div>
   </main>
   <main class="main2">
-    <div class="section_abanda imagem-banner js">    
+    <div class="section_abanda imagem-banner">    
       <div class="texto_abanda">
         <h1>Sobre a Juros Simples</h1>
         <p>A Juros Simples é uma banda de rock autoral formada por um grupo de amigos que transformou
