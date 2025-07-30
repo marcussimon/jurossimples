@@ -86,6 +86,9 @@
     color: white;                        
     text-decoration: underline;          
   }
+  .divRepart {
+    text-align: center;   
+  }
 
   footer a:hover {
     color: #ccc;                        
