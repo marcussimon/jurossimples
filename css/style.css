@@ -168,21 +168,22 @@
     background-color: #04AA6D;
     color: white;
     font-size: 16px;
-    padding: 8px 16px;
+    padding: 16px 16px;
     border-radius: 8px;
+    align-items: center;
   }
   .text_contatoI {
     background-color: #c203a8;
     color: white;
     font-size: 16px;
-    padding: 8px 16px;
+    padding: 16px 16px;
     border-radius: 8px;
   }
   .text_contatoY {
     background-color: #e41212;
     color: white;
     font-size: 16px;
-    padding: 8px 16px;
+    padding: 16px 16px;
     border-radius: 8px;
   }
   .text_contato a{
@@ -208,7 +209,7 @@
     padding: 40px;
     margin: 0 auto;   
     gap: 30px;   
-    min-height: 100vh;      
+    min-height: 50vh;      
   }
   .texto_abanda  {
     flex: 1;
@@ -260,7 +261,7 @@
     padding: 40px;
     margin: 0 auto;     
     gap: 30px;  
-    min-height: 100vh;  
+    min-height: 50vh;  
   }
 
   .imagem_abanda2 {

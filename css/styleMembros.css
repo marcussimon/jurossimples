@@ -29,13 +29,14 @@
         padding: 40px;
         margin: 0 auto;   
         gap: 30px;   
-        min-height: 100vh;      
+        min-height: 40vh;      
     }
     .texto_membros  {
         flex: 1;
         padding: 20px;
         justify-content: right;
         align-items: center;
+        
     }
 
     .texto_membros h1 {
@@ -46,6 +47,7 @@
 
     .texto_membros p {
         margin-bottom: 15px;
+        text-align: left;
         line-height: 1.6;
     }
 
@@ -74,7 +76,7 @@
         padding: 40px;
         margin: 0 auto;     
         gap: 30px;  
-        min-height: 100vh;  
+        min-height: 40vh;  
     }
 
     .imagem_membros2 {
