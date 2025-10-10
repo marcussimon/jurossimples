@@ -10,7 +10,7 @@
     script-src 'self' https://code.jquery.com https://www.gstatic.com 'unsafe-inline';
     connect-src 'self' https://firestore.googleapis.com https://www.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com;
   ">
-  <title>Banda Juros Simples - Cadastro de Produto</title>
+  <title>Banda Juros Simples - Deletar Música</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -36,6 +36,9 @@
         if (!user) {
             console.log("Usuário não autenticado. Redirecionando para login.html");
             window.location.href = 'login.html';
+        } else {
+            // Usuário autenticado, pode buscar as músicas.
+            fetchMusicasForDeletion();
         }
     });
   </script>
@@ -59,24 +62,11 @@
   </nav>
 
   <main>
-    <div class="form-container">
-        <h1>Cadastro de Novo Produto</h1>
-        <form id="formCadastroProduto">
-            <label for="nome">Nome do Produto:</label>
-            <input type="text" id="nome" name="nome" placeholder="Ex: Camiseta Juros Simples" required>
-            
-            <label for="descricao">Descrição:</label>
-            <textarea id="descricao" name="descricao" rows="4" placeholder="Descrição detalhada do produto e tamanhos disponíveis." required></textarea>
-            
-            <label for="preco">Preço (R$):</label>
-            <input type="number" id="preco" name="preco" min="0.01" step="0.01" placeholder="0.00" required>
-
-            <label for="imagem">Nome da Imagem:</label>
-            <input type="text" id="imagem" name="imagem" placeholder="Ex: camisa_branca.jpg">
-            
-            <button type="submit">Cadastrar Produto</button>
-        </form>
-        <p id="mensagemStatus" style="margin-top: 20px;">Preencha os dados e clique em Cadastrar.</p>
+    <div class="titulo_musicas">
+        <h1>Deletar Músicas</h1>
+    </div>
+    <div id="deleteContainer" class="musicas-container">
+        <p style="color: yellow;">Verificando autenticação...</p>
     </div>
   </main>
 
@@ -89,7 +79,8 @@
   </footer>
 
   <script>
-    document.getElementById('logoutBtn').addEventListener('click', function() {
+    document.getElementById('logoutBtn').addEventListener('click', function(e) {
+        e.preventDefault();
         auth.signOut().then(() => {
             console.log('Logout bem-sucedido.');
             window.location.href = 'login.html';
@@ -98,51 +89,57 @@
         });
     });
 
-    document.getElementById('formCadastroProduto').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const statusElement = document.getElementById('mensagemStatus');
-        const nome = document.getElementById('nome').value;
-        const descricao = document.getElementById('descricao').value;
-        const preco = parseFloat(document.getElementById('preco').value);
-        const imagem = document.getElementById('imagem').value;
+    const deleteContainer = document.getElementById('deleteContainer');
 
-        const user = auth.currentUser;
-        if (!user) {
-            statusElement.style.color = 'red';
-            statusElement.innerText = 'Você precisa estar logado para cadastrar um produto.';
-            return;
-        }
-
-        if (isNaN(preco)) {
-            statusElement.style.color = 'red';
-            statusElement.innerText = 'Erro: Preço inválido.';
-            return;
-        }
-
-        statusElement.style.color = 'yellow';
-        statusElement.innerText = 'Salvando dados do produto...';
-
+    async function fetchMusicasForDeletion() {
+        deleteContainer.innerHTML = '<p style="color: yellow;">Carregando músicas para deleção...</p>';
         try {
-            await db.collection("produto").add({
-                nome: nome,
-                descricao: descricao,
-                preco: preco,
-                imagem: imagem,
-                criadoEm: firebase.firestore.FieldValue.serverTimestamp()
-            });
-            statusElement.style.color = 'lightgreen';
-            statusElement.innerText = 'Produto cadastrado com sucesso!';
-            document.getElementById('formCadastroProduto').reset();
-        } catch (error) {
-            console.error("Erro ao salvar no Firestore: ", error);
-            statusElement.style.color = 'red';
-            if (error.code && error.code.includes('permission-denied')) {
-                statusElement.innerText = 'Erro de permissão: Verifique as Regras de Segurança do Firestore.';
+            const snapshot = await db.collection("musicasBanda").orderBy("criadoEm", "desc").get();
+            let musicasHtml = "";
+
+            if (snapshot.empty) {
+                musicasHtml = '<p style="color: white;">Nenhuma música encontrada.</p>';
             } else {
-                statusElement.innerText = 'Erro ao salvar dados do produto. Verifique o console.';
+                snapshot.forEach(doc => {
+                    const musica = doc.data();
+                    musicasHtml += `
+                        <div class="musica-card" id="musica-${doc.id}">
+                            <h2>${musica.nome}</h2>
+                            <button class="btn-delete" data-id="${doc.id}">Deletar</button>
+                        </div>
+                    `;
+                });
             }
+            
+            deleteContainer.innerHTML = musicasHtml;
+            setupDeleteButtons();
+            
+        } catch (error) {
+            console.error("Erro ao buscar músicas: ", error);
+            deleteContainer.innerHTML = '<p style="color: red;">Erro de permissão ao carregar músicas. Verifique as regras do Firestore.</p>';
         }
-    });
+    }
+
+    function setupDeleteButtons() {
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', async function() {
+                const musicaId = this.getAttribute('data-id');
+                if (confirm('Tem certeza que deseja deletar esta música? Esta ação não pode ser desfeita.')) {
+                    try {
+                        await db.collection("musicasBanda").doc(musicaId).delete();
+                        const musicaCard = document.getElementById(`musica-${musicaId}`);
+                        if(musicaCard) {
+                            musicaCard.remove();
+                        }
+                        alert('Música deletada com sucesso!');
+                    } catch (error) {
+                        console.error("Erro ao deletar música: ", error);
+                        alert('Erro de permissão ao deletar música. Verifique as regras do Firestore.');
+                    }
+                }
+            });
+        });
+    }
   </script>
   <script src="js/script.js"></script>
 

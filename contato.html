@@ -2,154 +2,112 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
-    style-src 'self' https://cdnjs.cloudflare.com;
+    style-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; 
     font-src 'self' https://cdnjs.cloudflare.com;
-    script-src 'self' https://code.jquery.com;
+    script-src 'self' https://code.jquery.com https://www.gstatic.com 'unsafe-inline';
+    connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com https://firebasestorage.googleapis.com;
   ">
-  <meta http-equiv="X-Frame-Options" content="DENY">
-  <meta http-equiv="Cache-Control" content="no-store" />
-  <title>Banda Juros Simples</title>
+  <title>Banda Juros Simples - A Banda</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="js/script.js"></script>
 </head>
-<body class="body_css imagem">
-  <main>
-    <div class="imagem-banner navbar ">
-       <div class="navbar-esquerda">
-        <a href="index.html">Início</a>
-        <a href="musicas.html">Músicas</a>
-        <a href="contato.html">A Banda</a>
-        <a href="membros.html">Membros</a> 
-        <a href="produtos.html">Produtos</a>
-      </div>
-      <div class="navbar-direita">
-        <a href="login.html">Acesso Restrito</a>
-      </div>
+<body class="imagem-fundo">
+
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a href="index.html">Juros Simples</a>
     </div>
-    <div class="section_abanda imagem-banner">
+    <div class="navbar-toggler">
+      <i class="fa fa-bars"></i>
+    </div>
+    <div class="navbar-links">
+      <a href="index.html">Início</a>
+      <a href="musicas.html">Músicas</a>
+      <a href="contato.html">A Banda</a>
+      <a href="membros.html">Membros</a> 
+      <a href="produtos.html">Produtos</a>
+      <a href="login.html">Acesso Restrito</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section_abanda">
       <div class="texto_abanda">
         <h1>Banda Juros Simples</h1>
-        <p>Uma história que começou com amigos reunidos para aprender a tocar violão, a 
-        banda Juros Simples vem conquistando cada vez mais espaço na cena musical.
-        Com uma sonoridade que mescla influências do rock dos anos 2000 com a
-        identidade única do grupo, a banda apresenta um repertório autoral que aborda
-        temas diversos, desde reflexões existenciais até o cotidiano.</p>
+        <p>Uma história que começou com amigos reunidos para aprender a tocar violão, a banda Juros Simples vem conquistando cada vez mais espaço na cena musical. Com uma sonoridade que mescla influências do rock dos anos 2000 com a identidade única do grupo, a banda apresenta um repertório autoral que aborda temas diversos, desde reflexões existenciais até o cotidiano.</p>
       </div>
       <div class="imagem_abanda">
         <img src="./img/banda1.jpg" alt="banda">
       </div>
-    </div>
-  </main>
-  <main class="main2">
-    <div class="section_abanda2 imagem-banner">    
+    </section>
+
+    <section class="section_abanda2">
       <div class="texto_abanda">
         <h1>Do hobby à paixão</h1>
-        <p>A ideia de formar uma banda surgiu de forma despretensiosa, durante 
-          encontros entre amigos para tocar violão. A sintonia entre os integrantes 
-          foi imediata, e em pouco tempo eles já estavam compondo suas próprias músicas. 
-          A paixão pela banda Capital Inicial, em especial, serviu como inspiração para 
-          a escolha do nome Juros Simples, uma referência divertida à fórmula matemática 
-          e à importância do capital inicial para a formação de uma banda.</p>
+        <p>A ideia de formar uma banda surgiu de forma despretensiosa, durante encontros entre amigos para tocar violão. A sintonia entre os integrantes foi imediata, e em pouco tempo eles já estavam compondo suas próprias músicas. A paixão pela banda Capital Inicial, em especial, serviu como inspiração para a escolha do nome Juros Simples, uma referência divertida à fórmula matemática e à importância do capital inicial para a formação de uma banda.</p>
       </div>
       <div class="imagem_abanda2">
         <img src="./img/banda2.jpg" alt="banda">
       </div>
-    </div>
-  </main>
-  <main class="main2">
-    <div class="section_abanda imagem-banner">    
+    </section>
+
+    <section class="section_abanda">
       <div class="texto_abanda">
         <h1>Um show de energia e emoção</h1>
-        <p>Com uma formação que inclui Raphael Lacerda (vocais), Marcus Simon (guitarra),
-           Mateus Costa (baixo), Ricardo Augusto (guitarra) e Gabriel Augusto (bateria), 
-           a Juros Simples apresenta um show cheio de energia e emoção. As letras, marcadas 
-           por uma linguagem poética e direta, abordam temas que tocam o público, como amor, 
-           amizade, sonhos e desafios da vida.</p>
+        <p>Com uma formação que inclui Raphael Lacerda (vocais), Marcus Simon (guitarra), Mateus Costa (baixo), Ricardo Augusto (guitarra) e Gabriel Augusto (bateria), a Juros Simples apresenta um show cheio de energia e emoção. As letras, marcadas por uma linguagem poética e direta, abordam temas que tocam o público, como amor, amizade, sonhos e desafios da vida.</p>
       </div>
-      <div class="imagem_abanda2">
+      <div class="imagem_abanda">
         <img src="img/banda3.jpg" alt="banda">
       </div>
-    </div>
-  </main>
-   <main class="main2">
-    <div class="section_abanda2 imagem-banner">    
+    </section>
+
+    <section class="section_abanda2">
       <div class="texto_abanda">
         <h1>Presença marcante em festivais</h1>
-        <p>A banda já se apresentou em diversos eventos, como o Festival Gastronômico Deliciosas 
-          da Lapa, em 2023 e 2024, onde conquistou o público com seu som contagiante. A participação 
-          em festivais como este representa um marco importante na trajetória da banda, que busca cada 
-          vez mais oportunidades para mostrar seu trabalho e conquistar novos fãs.</p>
-          <p>
-            Para saber mais:</br>
-          •	Ouça as músicas da Juros Simples nas principais plataformas de streaming.</br>
-          ( Em estúdio para o lançamento do primeiro EP)</br>
-          •	Acompanhe a banda nas redes sociais: </br>
-           <a href="https://www.youtube.com/@bandajurossimples" target="_blank"><i class="fa fa-youtube"></i>Youtube</a>,</br>
-           <a href="https://www.instagram.com/bandajurossimples" target="_blank"><i class="fa fa-instagram"></i>Instagram</a>
-          </p>
+        <p>A banda já se apresentou em diversos eventos, como o Festival Gastronômico Deliciosas da Lapa, em 2023 e 2024, onde conquistou o público com seu som contagiante. A participação em festivais como este representa um marco importante na trajetória da banda, que busca cada vez mais oportunidades para mostrar seu trabalho e conquistar novos fãs.</p>
+        <p>Para saber mais:<br>
+          • Ouça as músicas da Juros Simples nas principais plataformas de streaming (Em estúdio para o lançamento do primeiro EP).<br>
+          • Acompanhe a banda nas redes sociais: 
+           <a href="https://www.youtube.com/@bandajurossimples" target="_blank"><i class="fa fa-youtube"></i> Youtube</a>, 
+           <a href="https://www.instagram.com/bandajurossimples" target="_blank"><i class="fa fa-instagram"></i> Instagram</a>
+        </p>
       </div>
       <div class="imagem_abanda2">
         <img src="img/banda4.jpg" alt="banda">
       </div>
-    </div>
-  </main>
-  <main class="main2">
-    <div class="section_abanda imagem-banner">    
+    </section>
+
+    <section class="section_abanda">
       <div class="texto_abanda">
         <h1>Sobre a Juros Simples</h1>
-        <p>A Juros Simples é uma banda de rock autoral formada por um grupo de amigos que transformou
-           a paixão pela música em um projeto de sucesso. Com um som original e letras que falam direto
-            ao coração, a banda vem conquistando cada vez mais espaço na cena musical.</p>
-        <p>Contatos: </br>
-        <a href="https://www.instagram.com/bandajurossimples" target="_blank"><i class="fa fa-instagram"></i>Instagram</a></br>
-        <a href="https://api.whatsapp.com/send?phone=5531997275290&fbclid=PAZXh0bgNhZW0CMTEAAadv4DQ2U8RJGF_9JF2iSQ043fHoKIQ_zygCHM0W0Pw7FAa9qmeqzw1ngtWZqQ_aem_HS6AjI0eyOrgm2AEju-YFg" target="_blank"><i class="fa fa-whatsapp"></i>Whatsapp</a></p>
+        <p>A Juros Simples é uma banda de rock autoral formada por um grupo de amigos que transformou a paixão pela música em um projeto de sucesso. Com um som original e letras que falam direto ao coração, a banda vem conquistando cada vez mais espaço na cena musical.</p>
+        <p>Contatos:<br> 
+        <a href="https://www.instagram.com/bandajurossimples" target="_blank"><i class="fa fa-instagram"></i> Instagram</a><br>
+        <a href="https://wa.me/5531998265807" target="_blank"><i class="fa fa-whatsapp"></i> Whatsapp</a></p>
       </div>
-      <div class="imagem_abanda2">
+      <div class="imagem_abanda">
         <img src="img/banda5.jpg" alt="banda">
       </div>
-    </div>
+    </section>
   </main>
-  <footer >
-    <div > 
-        <h2 class="h1_contato">Redes Sociais</h2> 
+
+  <footer>
+    <h2>Redes Sociais</h2>
+    <div class="contato_icones">
+        <a href="https://wa.me/5531998265807" target="_blank" aria-label="WhatsApp"><i class="fa fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/bandajurossimples" target="_blank" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@bandajurossimples" target="_blank" aria-label="YouTube"><i class="fa fa-youtube"></i></a>
     </div>
-    </br>
-    <div class="contato_icones">     
-      <div class="container_contato"> 
-        <img src="./img/logoWhats.png" alt="Avatar" class="logo_contato" style="width:100%">
-        <div class="bloco_contato"> 
-          <div class="text_contatoW text_contato">
-            <a href="https://api.whatsapp.com/send?phone=5531997275290&fbclid=PAZXh0bgNhZW0CMTEAAadv4DQ2U8RJGF_9JF2iSQ043fHoKIQ_zygCHM0W0Pw7FAa9qmeqzw1ngtWZqQ_aem_HS6AjI0eyOrgm2AEju-YFg" target="_blank"><i class="fa fa-whatsapp"></i></a></div>
-        </div>
-      </div>
-      <div class="container_contato"> 
-        <img src="./img/logoInsta.png" alt="Avatar" class="logo_contato" style="width:100%">
-        <div class="bloco_contato"> 
-          <div class="text_contatoI text_contato">
-            <a href="https://www.instagram.com/bandajurossimples" target="_blank"><i class="fa fa-instagram"></i></a></div>
-        </div>
-      </div>
-      <div class="container_contato"> 
-        <img src="./img/logoYoutube.png" alt="Avatar" class="logo_contato" style="width:100%">
-        <div class="bloco_contato"> 
-          <div class="text_contatoY text_contato">
-            <a href="https://www.youtube.com/@bandajurossimples" target="_blank"><i class="fa fa-youtube"></i></a></div>
-        </div>
-      </div>
-    </div>
-    
-    <br>
-    
     <div class="divRepart">
       <p><i class="fa fa-copyright"></i> 2025 Banda Juros Simples - Desenvolvido por 
-      <a href="https://www.instagram.com/Vitoria_Desenvolvedora" target="_blank"><i class="fa fa-instagram"></i>Vitoria</a></p>
+      <a href="https://www.instagram.com/Vitoria_Desenvolvedora" target="_blank"><i class="fa fa-instagram"></i> Vitoria</a></p>
       <p>Contato: <a href="mailto:contato@jurossimples.com.br">contato@jurossimples.com.br</a></p>
-    </div >     
+    </div>
   </footer>
 
+  <script src="js/script.js"></script>
 </body>
 </html>

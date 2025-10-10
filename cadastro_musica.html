@@ -10,7 +10,7 @@
     script-src 'self' https://code.jquery.com https://www.gstatic.com 'unsafe-inline';
     connect-src 'self' https://firestore.googleapis.com https://www.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com;
   ">
-  <title>Banda Juros Simples - Cadastro de Produto</title>
+  <title>Banda Juros Simples - Cadastro de Música</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -60,21 +60,18 @@
 
   <main>
     <div class="form-container">
-        <h1>Cadastro de Novo Produto</h1>
-        <form id="formCadastroProduto">
-            <label for="nome">Nome do Produto:</label>
-            <input type="text" id="nome" name="nome" placeholder="Ex: Camiseta Juros Simples" required>
+        <h1>Cadastro de Nova Música</h1>
+        <form id="formCadastroMusica">
+            <label for="nome">Nome da Música:</label>
+            <input type="text" id="nome" name="nome" placeholder="Ex: Manhãs de Setembro" required>
             
-            <label for="descricao">Descrição:</label>
-            <textarea id="descricao" name="descricao" rows="4" placeholder="Descrição detalhada do produto e tamanhos disponíveis." required></textarea>
+            <label for="spotifyLink">Link do Spotify:</label>
+            <input type="url" id="spotifyLink" name="spotifyLink" placeholder="https://open.spotify.com/..." required>
             
-            <label for="preco">Preço (R$):</label>
-            <input type="number" id="preco" name="preco" min="0.01" step="0.01" placeholder="0.00" required>
-
             <label for="imagem">Nome da Imagem:</label>
-            <input type="text" id="imagem" name="imagem" placeholder="Ex: camisa_branca.jpg">
+            <input type="text" id="imagem" name="imagem" placeholder="Ex: capa_album.jpg">
             
-            <button type="submit">Cadastrar Produto</button>
+            <button type="submit">Cadastrar Música</button>
         </form>
         <p id="mensagemStatus" style="margin-top: 20px;">Preencha os dados e clique em Cadastrar.</p>
     </div>
@@ -98,49 +95,37 @@
         });
     });
 
-    document.getElementById('formCadastroProduto').addEventListener('submit', async function(e) {
+    document.getElementById('formCadastroMusica').addEventListener('submit', async function(e) {
         e.preventDefault();
         const statusElement = document.getElementById('mensagemStatus');
         const nome = document.getElementById('nome').value;
-        const descricao = document.getElementById('descricao').value;
-        const preco = parseFloat(document.getElementById('preco').value);
+        const spotifyLink = document.getElementById('spotifyLink').value;
         const imagem = document.getElementById('imagem').value;
 
         const user = auth.currentUser;
         if (!user) {
             statusElement.style.color = 'red';
-            statusElement.innerText = 'Você precisa estar logado para cadastrar um produto.';
-            return;
-        }
-
-        if (isNaN(preco)) {
-            statusElement.style.color = 'red';
-            statusElement.innerText = 'Erro: Preço inválido.';
+            statusElement.innerText = 'Você precisa estar logado para cadastrar uma música.';
             return;
         }
 
         statusElement.style.color = 'yellow';
-        statusElement.innerText = 'Salvando dados do produto...';
+        statusElement.innerText = 'Salvando dados da música...';
 
         try {
-            await db.collection("produto").add({
+            await db.collection("musicasBanda").add({
                 nome: nome,
-                descricao: descricao,
-                preco: preco,
+                spotifyLink: spotifyLink,
                 imagem: imagem,
                 criadoEm: firebase.firestore.FieldValue.serverTimestamp()
             });
             statusElement.style.color = 'lightgreen';
-            statusElement.innerText = 'Produto cadastrado com sucesso!';
-            document.getElementById('formCadastroProduto').reset();
+            statusElement.innerText = 'Música cadastrada com sucesso!';
+            document.getElementById('formCadastroMusica').reset();
         } catch (error) {
             console.error("Erro ao salvar no Firestore: ", error);
             statusElement.style.color = 'red';
-            if (error.code && error.code.includes('permission-denied')) {
-                statusElement.innerText = 'Erro de permissão: Verifique as Regras de Segurança do Firestore.';
-            } else {
-                statusElement.innerText = 'Erro ao salvar dados do produto. Verifique o console.';
-            }
+            statusElement.innerText = 'Erro ao salvar dados da música. Verifique o console para mais detalhes.';
         }
     });
   </script>
