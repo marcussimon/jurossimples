@@ -2,80 +2,146 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
-    style-src 'self' https://cdnjs.cloudflare.com;
+    style-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; 
     font-src 'self' https://cdnjs.cloudflare.com;
-    script-src 'self' https://code.jquery.com;
+    script-src 'self' https://code.jquery.com https://www.gstatic.com 'unsafe-inline';
+    connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com;
   ">
-  <meta http-equiv="X-Frame-Options" content="DENY">
-  <meta http-equiv="Cache-Control" content="no-store" />
-  <title>Banda Juros Simpres</title>
+  <title>Banda Juros Simples - Produtos</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="/js/script.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBfcfEFiaZOvh5QxePXkbwqE-aPWlpy5kQ",
+      authDomain: "juros-simples-site.firebaseapp.com",
+      projectId: "juros-simples-site",
+      storageBucket: "juros-simples-site.firebasestorage.app",
+      messagingSenderId: "442413466029",
+      appId: "1:442413466029:web:7818f12c547b3c9ce2a124",
+      measurementId: "G-9P99CN9HDS"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
 </head>
-<body class="body_css imagem">
-  <main>
-    <div class="imagem-banner navbar ">
-       <div class="navbar-esquerda">
-        <a href="index.html">Início</a>
-        <a href="musicas.html">Músicas</a>
-        <a href="contato.html">A Banda</a>
-        <a href="membros.html">Membros</a> 
-        <a href="produtos.html">Produtos</a>
-      </div>
-      <div class="navbar-direita">
-        <a href="login.html">Acesso Restrito</a>
-      </div>
+<body class="imagem-fundo">
+
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a href="index.html">Juros Simples</a>
     </div>
- 
-    <div class="imagem-banner alerta"> <!--banner principal-->   
-        <h3 > 
-           EM CONSTRUÇÃO
-        </h3>
+    <div class="navbar-toggler">
+      <i class="fa fa-bars"></i>
+    </div>
+    <div class="navbar-links">
+      <a href="index.html">Início</a>
+      <a href="musicas.html">Músicas</a>
+      <a href="contato.html">A Banda</a>
+      <a href="membros.html">Membros</a> 
+      <a href="produtos.html">Produtos</a>
+      <a href="login.html">Acesso Restrito</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="titulo_produtos">
+        <h1>Nossos Produtos</h1>
+    </div>
+    <div id="produtosContainer" class="produtos-container">
+        <p style="color: yellow;">Carregando produtos...</p>
     </div>
   </main>
-
-    <footer >
-    <div > 
-        <h2 class="h1_contato">Redes Sociais</h2> 
+  
+  <footer>
+    <h2>Redes Sociais</h2>
+    <div class="contato_icones">
+        <a href="https://wa.me/5531998265807" target="_blank" aria-label="WhatsApp"><i class="fa fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/bandajurossimples" target="_blank" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@bandajurossimples" target="_blank" aria-label="YouTube"><i class="fa fa-youtube"></i></a>
     </div>
-    </br>
-    <div class="contato_icones">     
-      <div class="container_contato"> 
-        <img src="./img/logoWhats.png" alt="Avatar" class="logo_contato" style="width:100%">
-        <div class="bloco_contato"> 
-          <div class="text_contatoW text_contato">
-            <a href="https://api.whatsapp.com/send?phone=5531997275290&fbclid=PAZXh0bgNhZW0CMTEAAadv4DQ2U8RJGF_9JF2iSQ043fHoKIQ_zygCHM0W0Pw7FAa9qmeqzw1ngtWZqQ_aem_HS6AjI0eyOrgm2AEju-YFg" target="_blank"><i class="fa fa-whatsapp"></i></a></div>
-        </div>
-      </div>
-      <div class="container_contato"> 
-        <img src="./img/logoInsta.png" alt="Avatar" class="logo_contato" style="width:100%">
-        <div class="bloco_contato"> 
-          <div class="text_contatoI text_contato">
-            <a href="https://www.instagram.com/bandajurossimples" target="_blank"><i class="fa fa-instagram"></i></a></div>
-        </div>
-      </div>
-      <div class="container_contato"> 
-        <img src="./img/logoYoutube.png" alt="Avatar" class="logo_contato" style="width:100%">
-        <div class="bloco_contato"> 
-          <div class="text_contatoY text_contato">
-            <a href="https://www.youtube.com/@bandajurossimples" target="_blank"><i class="fa fa-youtube"></i></a></div>
-        </div>
-      </div>
-    </div>
-    
-    <br>
-    
     <div class="divRepart">
       <p><i class="fa fa-copyright"></i> 2025 Banda Juros Simples - Desenvolvido por 
-      <a href="https://www.instagram.com/Vitoria_Desenvolvedora" target="_blank"><i class="fa fa-instagram"></i>Vitoria</a></p>
+      <a href="https://www.instagram.com/Vitoria_Desenvolvedora" target="_blank"><i class="fa fa-instagram"></i> Vitoria</a></p>
       <p>Contato: <a href="mailto:contato@jurossimples.com.br">contato@jurossimples.com.br</a></p>
-    </div >     
+    </div>
   </footer>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const produtosContainer = document.getElementById('produtosContainer');
+        const whatsappBaseLink = 'https://wa.me/5531998265807';
+        const whatsappBaseUrl = whatsappBaseLink + '&text=';
+
+        function createProductCard(product) {
+            const precoFormatado = parseFloat(product.preco).toFixed(2).replace('.', ',');
+            let imagensHtml = '';
+            if (product.imagem) {
+                const imagens = product.imagem.split(',').map(img => img.trim());
+                if (imagens.length > 1) {
+                    imagensHtml = `
+                        <div class="banner">
+                            <div class="banner-slider">
+                                ${imagens.map(img => `<img src="img/produtos/${img}" alt="${product.nome}">`).join('')}
+                            </div>
+                        </div>`;
+                } else if (imagens.length === 1 && imagens[0]) {
+                    imagensHtml = `<img src="img/produtos/${imagens[0]}" alt="${product.nome}" class="produto-imagem">`;
+                }
+            }
+            return `
+                <div class="produto-card">
+                    ${imagensHtml}
+                    <h2>${product.nome}</h2>
+                    <p>${product.descricao}</p>
+                    <p class="preco">R$ ${precoFormatado}</p>
+                    <a href="#" class="btn-whatsapp" data-product="${product.nome} - ${product.descricao} (R$ ${precoFormatado})">Comprar no WhatsApp</a>
+                </div>
+            `;
+        }
+
+        function setupWhatsappLinks() {
+            document.querySelectorAll('.btn-whatsapp').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productName = this.getAttribute('data-product');
+                    let message = 'Olá! Gostaria de comprar o seguinte produto da Banda Juros Simples: ' + productName + '. Por favor, me ajude a finalizar o pedido.';
+                    const encodedMessage = encodeURIComponent(message);
+                    const whatsappLink = whatsappBaseUrl + encodedMessage;
+                    window.open(whatsappLink, '_blank');
+                });
+            });
+        }
+
+        async function fetchProducts() {
+            try {
+                const snapshot = await db.collection("produto").orderBy("criadoEm", "desc").get();
+                let productsHtml = '';
+                if (snapshot.empty) {
+                    productsHtml = '<p style="color: white;">Nenhum produto encontrado. Aguarde novas atualizações da equipe!</p>';
+                } else {
+                    snapshot.forEach(doc => {
+                        const product = doc.data();
+                        productsHtml += createProductCard(product);
+                    });
+                }
+                produtosContainer.innerHTML = productsHtml;
+                setupWhatsappLinks();
+            } catch (error) {
+                console.error("Erro ao buscar produtos: ", error);
+                produtosContainer.innerHTML = '<p style="color: red;">Erro ao carregar produtos. Verifique sua conexão com o Firebase e regras de segurança (read: true).</p>';
+            }
+        }
+
+        fetchProducts();
+    });
+  </script>
+  <script src="js/script.js"></script>
 
 </body>
 </html>
