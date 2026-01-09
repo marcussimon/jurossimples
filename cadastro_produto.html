@@ -13,6 +13,33 @@
   <title>Banda Juros Simples - Cadastro de Produto</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <style>
+    .format-buttons {
+      margin-bottom: 10px;
+    }
+    .format-buttons button {
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: 1px solid var(--cor-secundaria);
+      background-color: var(--cor-primaria);
+      color: var(--cor-texto);
+      font-size: 12px;
+      cursor: pointer;
+      margin-right: 5px;
+      transition: background-color 0.3s;
+    }
+    .format-buttons button:hover {
+      background-color: var(--cor-secundaria);
+      color: var(--cor-primaria);
+    }
+    .format-info {
+      font-size: 12px;
+      margin-top: -10px;
+      margin-bottom: 10px;
+      color: #aaa;
+    }
+  </style>
 
   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
@@ -66,13 +93,26 @@
             <input type="text" id="nome" name="nome" placeholder="Ex: Camiseta Juros Simples" required>
             
             <label for="descricao">Descrição:</label>
-            <textarea id="descricao" name="descricao" rows="4" placeholder="Descrição detalhada do produto e tamanhos disponíveis." required></textarea>
+            <div class="format-buttons">
+                <button type="button" onclick="insertTag('b')">negrito</button>
+                <button type="button" onclick="insertTag('i')">itálico</button>
+                <button type="button" onclick="insertTag('u')">sublinhar</button>
+                <button type="button" onclick="insertTag('br')">quebra de linha</button>
+                <button type="button" onclick="insertTag('ul')">lista</button>
+            </div>
+            <textarea id="descricao" name="descricao" rows="10" placeholder="Descrição detalhada do produto..." required></textarea>
             
             <label for="preco">Preço (R$):</label>
             <input type="number" id="preco" name="preco" min="0.01" step="0.01" placeholder="0.00" required>
 
             <label for="imagem">Nome da Imagem:</label>
             <input type="text" id="imagem" name="imagem" placeholder="Ex: camisa_branca.jpg">
+
+            <label for="linkMercadoLivre">Link Mercado Livre:</label>
+            <input type="url" id="linkMercadoLivre" name="linkMercadoLivre" placeholder="https://">
+
+            <label for="linkAmazon">Link Amazon:</label>
+            <input type="url" id="linkAmazon" name="linkAmazon" placeholder="https://">
             
             <button type="submit">Cadastrar Produto</button>
         </form>
@@ -89,6 +129,28 @@
   </footer>
 
   <script>
+    function insertTag(tag) {
+        const textarea = document.getElementById('descricao');
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const selectedText = textarea.value.substring(start, end);
+        let content;
+
+        if (tag === 'br') {
+            content = '<br>';
+        } else if (tag === 'ul') {
+            content = '<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ul>';
+        } 
+        else {
+            content = `<${tag}>${selectedText}</${tag}>`;
+        }
+        
+        textarea.value = textarea.value.substring(0, start) + content + textarea.value.substring(end);
+        textarea.focus();
+        const newCursorPos = start + content.length;
+        textarea.setSelectionRange(newCursorPos, newCursorPos);
+    }
+
     document.getElementById('logoutBtn').addEventListener('click', function() {
         auth.signOut().then(() => {
             console.log('Logout bem-sucedido.');
@@ -105,6 +167,8 @@
         const descricao = document.getElementById('descricao').value;
         const preco = parseFloat(document.getElementById('preco').value);
         const imagem = document.getElementById('imagem').value;
+        const linkMercadoLivre = document.getElementById('linkMercadoLivre').value;
+        const linkAmazon = document.getElementById('linkAmazon').value;
 
         const user = auth.currentUser;
         if (!user) {
@@ -128,6 +192,8 @@
                 descricao: descricao,
                 preco: preco,
                 imagem: imagem,
+                linkMercadoLivre: linkMercadoLivre,
+                linkAmazon: linkAmazon,
                 criadoEm: firebase.firestore.FieldValue.serverTimestamp()
             });
             statusElement.style.color = 'lightgreen';

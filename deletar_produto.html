@@ -106,6 +106,8 @@
                         <div class="produto-card" id="product-${doc.id}">
                             <h2>${product.nome}</h2>
                             <p>Preço: R$ ${parseFloat(product.preco).toFixed(2).replace('.', ',')}</p>
+                            <p>Descrição: ${product.descricao}</p><br>
+                            <p>Imagem:  ${product.imagem}</p>
                             <button class="btn-delete" data-id="${doc.id}">Deletar</button>
                         </div>
                     `;
